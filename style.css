@@ -1,0 +1,83 @@
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #fafafa;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background: #0077ff;
+  color: white;
+  padding: 2rem 1rem;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+h1, h2, h3 {
+  margin: 0.5em 0;
+}
+
+main {
+  padding: 2rem 1rem;
+}
+
+.tool-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+}
+
+.btn {
+  display: inline-block;
+  background: #0077ff;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #005cd1;
+}
+
+textarea {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.result {
+  margin-top: 1rem;
+}
+
+.bio-item {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.copy-btn {
+  background: #00b894;
+  margin-top: 0.5rem;
+}
+
+footer {
+  background: #eee;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
