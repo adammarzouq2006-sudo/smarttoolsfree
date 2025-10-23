@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adammarzouq2006-sudo.github.io/sitemap.xml
