@@ -31,3 +31,10 @@ function copyText(text) {
   navigator.clipboard.writeText(text);
   alert("Bio copiée !");
 }
+// --- Faire apparaître les sections en douceur ---
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("header, .tools, .support, footer").forEach((el, index) => {
+    el.classList.add("fade-in");
+    el.style.animationDelay = `${index * 0.2}s`;
+  });
+});
