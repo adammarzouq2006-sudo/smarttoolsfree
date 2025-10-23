@@ -188,3 +188,63 @@ body {
   background-color: #005fcc;
   transform: scale(1.05);
 }
+/* --- Mise en page des cartes d'outils --- */
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 30px 10px;
+}
+
+.tool-card {
+  width: 100%;
+  max-width: 350px;
+}
+
+/* --- Style des entrées et boutons dans les générateurs --- */
+.bio-generator input,
+.password-generator input {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.bio-generator button,
+.password-generator button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bio-generator button:hover,
+.password-generator button:hover {
+  transform: scale(1.05);
+}
+
+/* --- Zone de résultat --- */
+.generated-bio, .generated-password {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.generated-bio button,
+.generated-password button {
+  background: #28a745;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
