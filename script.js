@@ -38,3 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.animationDelay = `${index * 0.2}s`;
   });
 });
+// --- Générateur de mot de passe sécurisé ---
+document.getElementById("generate-password")?.addEventListener("click", () => {
+  const length = parseInt(document.getElementById("length").value);
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  document.getElementById("password-result").innerHTML = `
+    <div class="generated-password">
+      <p>${password}</p>
+      <button onclick="navigator.clipboard.writeText('${password}')">📋 Copier</button>
+    </div>`;
+});
