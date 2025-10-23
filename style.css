@@ -142,3 +142,16 @@ body {
   font-size: 15px;
   margin-bottom: 15px;
 }
+/* --- Animation d'apparition douce --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInMove 1s ease-out forwards;
+}
+
+@keyframes fadeInMove {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
