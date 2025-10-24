@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de hashtags - SmartToolsFree</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">SmartToolsFree</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="#tools">Outils</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 style="text-align:center;margin-bottom:14px;">🏷️ Générateur de hashtags</h1>
+    <p style="text-align:center;color:#64748b;margin-bottom:26px;">Entre un mot-clé, choisis une plateforme et récupère des hashtags pertinents.</p>
+
+    <div class="card">
+      <div class="row">
+        <input id="kw" class="input" placeholder="Ex : streetwear, recettes, football, maquillage…">
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <select id="platform" class="input" style="max-width:220px;">
+          <option value="tiktok">TikTok</option>
+          <option value="instagram">Instagram</option>
+        </select>
+        <select id="style" class="input" style="max-width:220px;">
+          <option value="general">Général</option>
+          <option value="niche">Niche</option>
+          <option value="fr">Francophone</option>
+        </select>
+        <select id="qty" class="input" style="max-width:160px;">
+          <option>15</option><option>20</option><option>30</option>
+        </select>
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <button class="btn" onclick="genTags()">Générer</button>
+        <button class="btn" style="background:#475569;margin-left:8px;" onclick="copyTags()">Copier</button>
+      </div>
+    </div>
+
+    <div id="tagsBox" class="card" style="margin-top:18px;display:none;">
+      <h3 style="margin-bottom:10px;">✨ Hashtags</h3>
+      <div id="tagsOut"></div>
+    </div>
+
+    <p style="text-align:center;margin-top:22px;">
+      <a class="btn" href="index.html">← Retour à l'accueil</a>
+    </p>
+  </div>
+
+  <footer class="footer"><p>© 2025 SmartToolsFree</p></footer>
+
+<script>
+function combos(base, plat, style){
+  const extraGeneral = ["viral","trend","tips","life","daily","vibes"];
+  const extraTT = ["fyp","pourtoi","tiktokfr","tiktok"];
+  const extraIG = ["reels","instagood","explore","igers"];
+  const fr = ["france","fr","communauté","astuces","conseils"];
+  let extras = extraGeneral;
+  extras = extras.concat(plat==="tiktok" ? extraTT : extraIG);
+  if(style==="fr") extras = extras.concat(fr);
+  if(style==="niche") extras = extras.concat([base, base+"addict", base+"lover"]);
+
+  const set = new Set();
+  extras.forEach(e => set.add(`#${(plat==="tiktok" ? "" : "")}${e}`));
+  set.add(`#${base}`); set.add(`#${base}fr`); set.add(`#${base}tips`); set.add(`#${base}community`);
+  return [...set];
+}
+function genTags(){
+  const kw = (document.getElementById('kw').value||"content").toLowerCase().replace(/\s+/g,'');
+  const plat = document.getElementById('platform').value;
+  const style= document.getElementById('style').value;
+  const qty  = parseInt(document.getElementById('qty').value,10);
+
+  let tags = combos(kw, plat, style);
+  while(tags.length<qty){
+    tags = tags.concat(tags.map(t=>t+Math.floor(Math.random()*9)).slice(0,qty-tags.length));
+  }
+  tags = [...new Set(tags)].slice(0,qty);
+
+  document.getElementById('tagsOut').innerHTML =
+    `<div class="badge" style="white-space:pre-wrap;">${tags.join(' ')}</div>`;
+  document.getElementById('tagsBox').style.display='block';
+}
+function copyTags(){
+  const b = document.querySelector('#tagsOut .badge');
+  if(!b) return;
+  navigator.clipboard.writeText(b.innerText);
+  alert("Hashtags copiés ✅");
+}
+</script>
+</body>
+</html>
