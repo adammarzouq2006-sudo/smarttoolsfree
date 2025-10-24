@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de pseudo - SmartToolsFree</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">SmartToolsFree</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="#tools">Outils</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 style="text-align:center;margin-bottom:14px;">💡 Générateur de pseudo</h1>
+    <p style="text-align:center;color:#64748b;margin-bottom:26px;">Entre 1–2 mots clés et choisis un style.</p>
+
+    <div class="card">
+      <div class="row">
+        <input id="seed" class="input" placeholder="Ex : street, cook, fit, tech…">
+        <select id="styleSel" class="input" style="max-width:220px;">
+          <option value="cool">Cool</option>
+          <option value="pro">Pro</option>
+          <option value="cute">Cute</option>
+          <option value="tech">Tech</option>
+        </select>
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <button class="btn" onclick="genNames()">Générer</button>
+        <button class="btn" style="background:#475569;margin-left:8px;" onclick="copyNames()">Copier tout</button>
+      </div>
+    </div>
+
+    <div id="namesBox" class="card" style="margin-top:18px;display:none;">
+      <h3 style="margin-bottom:10px;">✨ Idées de pseudos</h3>
+      <ul id="namesList" style="padding-left:18px;"></ul>
+    </div>
+
+    <p style="text-align:center;margin-top:22px;">
+      <a class="btn" href="index.html">← Retour à l'accueil</a>
+    </p>
+  </div>
+
+  <footer class="footer"><p>© 2025 SmartToolsFree</p></footer>
+
+<script>
+function bank(style){
+  const endCool = ["X","HQ","TV","Zone","Hub","Wave","Lab","Studio"];
+  const endPro  = ["Pro","Consult","Media","Agency","Digital","Works"];
+  const endCute = ["Kitty","Bear","Plush","Bunny","Honey","Star","Cloud"];
+  const endTech = ["AI","Tech","Bytes","Engine","Core","OS","Dev"];
+  return style==="pro"?endPro:style==="cute"?endCute:style==="tech"?endTech:endCool;
+}
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function genNames(){
+  const seed = (document.getElementById('seed').value||"crea").toLowerCase().replace(/\s+/g,'');
+  const style= document.getElementById('styleSel').value;
+  const ends = bank(style);
+  const mids = ["ly","ify","ster","ify","ora","ista","verse","flux","line","loop","drop"];
+  const out = new Set();
+
+  while(out.size<20){
+    const name = cap(seed)+cap(mids[Math.floor(Math.random()*mids.length)])+ends[Math.floor(Math.random()*ends.length)];
+    out.add(name);
+  }
+  const list = [...out].slice(0,20);
+  document.getElementById('namesList').innerHTML = list.map(n=>`<li style="margin:6px 0;">${n}</li>`).join('');
+  document.getElementById('namesBox').style.display='block';
+}
+function copyNames(){
+  const t = [...document.querySelectorAll('#namesList li')].map(li=>li.innerText).join('\n');
+  if(!t) return; navigator.clipboard.writeText(t); alert("Pseudos copiés ✅");
+}
+</script>
+</body>
+</html>
