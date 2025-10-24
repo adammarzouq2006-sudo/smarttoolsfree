@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de mots de passe - SmartToolsFree</title>
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo">SmartToolsFree</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="#tools">Outils</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 style="text-align:center;margin-bottom:14px;">🔐 Générateur de mots de passe</h1>
+    <p style="text-align:center;color:#64748b;margin-bottom:26px;">Crée un mot de passe solide en 1 clic.</p>
+
+    <div class="card">
+      <div class="row">
+        <label style="width:180px;">Longueur (8–32)</label>
+        <input id="len" class="input" type="number" value="16" min="8" max="32" style="max-width:120px;">
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <label><input id="useLower" type="checkbox" checked> minuscules</label>
+        <label><input id="useUpper" type="checkbox" checked style="margin-left:14px;"> MAJUSCULES</label>
+        <label><input id="useNums"  type="checkbox" checked style="margin-left:14px;"> chiffres</label>
+        <label><input id="useSyms"  type="checkbox" checked style="margin-left:14px;"> symboles</label>
+      </div>
+      <div class="row" style="margin-top:16px;">
+        <input id="out" class="input" readonly placeholder="Ton mot de passe apparaîtra ici">
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <button class="btn" onclick="gen()">Générer</button>
+        <button class="btn" style="background:#475569;margin-left:8px;" onclick="copyPw()">Copier</button>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:22px;">
+      <a class="btn" href="index.html">← Retour à l'accueil</a>
+    </p>
+  </div>
+
+  <footer class="footer"><p>© 2025 SmartToolsFree</p></footer>
+
+<script>
+function r(s){ return s[Math.floor(Math.random()*s.length)]; }
+function gen(){
+  const L = Math.max(8, Math.min(32, parseInt(document.getElementById('len').value||'16',10)));
+  const sets = [];
+  const lower = "abcdefghijklmnopqrstuvwxyz";
+  const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const nums  = "0123456789";
+  const syms  = "!@#$%^&*()-_=+[]{};:,.?/";
+
+  if(document.getElementById('useLower').checked) sets.push(lower);
+  if(document.getElementById('useUpper').checked) sets.push(upper);
+  if(document.getElementById('useNums').checked)  sets.push(nums);
+  if(document.getElementById('useSyms').checked)  sets.push(syms);
+  if(sets.length===0){ alert("Choisis au moins un type de caractère."); return; }
+
+  // garantit au moins un caractère de chaque type choisi
+  let pw = sets.map(s=>r(s)).join("");
+  const all = sets.join("");
+  while(pw.length<L) pw += r(all);
+
+  // mélange rapide
+  pw = pw.split('').sort(()=>Math.random()-0.5).join('');
+  document.getElementById('out').value = pw;
+}
+function copyPw(){
+  const v = document.getElementById('out').value;
+  if(!v){ return; }
+  navigator.clipboard.writeText(v);
+  alert("Mot de passe copié ✅");
+}
+</script>
+</body>
+</html>
