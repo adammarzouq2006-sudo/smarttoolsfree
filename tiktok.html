@@ -3,97 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Idées TikTok - SmartToolsFree</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <title>Idées TikTok</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-logo">SmartToolsFree</div>
-    <div class="nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="#tools">Outils</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+  <header class="navbar">
+    <h1>🎥 Idées TikTok</h1>
+    <a href="index.html" class="btn">← Retour</a>
+  </header>
 
-  <div class="container">
-    <h1 style="text-align:center;margin-bottom:14px;">🎬 Générateur d’idées TikTok</h1>
-    <p style="text-align:center;color:#64748b;margin-bottom:26px;">Entre un thème, choisis un ton, et récupère des idées prêtes à filmer.</p>
+  <section class="tool-section">
+    <h2>Trouve ton inspiration ✨</h2>
+    <button id="idea-btn" class="btn">Donne-moi une idée</button>
+    <p id="idea-output"></p>
+  </section>
 
-    <div class="card">
-      <div class="row">
-        <input id="theme" class="input" placeholder="Ex : streetwear, recettes rapides, musculation maison…">
-      </div>
-      <div class="row" style="margin-top:12px;">
-        <select id="tone" class="input" style="max-width:260px;">
-          <option value="éducatif">Ton éducatif</option>
-          <option value="humour">Ton humour</option>
-          <option value="motivation">Ton motivation</option>
-          <option value="storytime">Ton storytime</option>
-        </select>
-        <select id="count" class="input" style="max-width:160px;">
-          <option>5</option><option>10</option><option>15</option>
-        </select>
-      </div>
-      <div class="row" style="margin-top:12px;">
-        <button class="btn" onclick="genIdeas()">Générer</button>
-        <button class="btn" style="background:#475569;margin-left:8px;" onclick="copyIdeas()">Copier tout</button>
-      </div>
-    </div>
-
-    <div id="ideasBox" class="card" style="margin-top:18px;display:none;">
-      <h3 style="margin-bottom:10px;">✨ Idées proposées</h3>
-      <ol id="ideasList" style="padding-left:18px;"></ol>
-    </div>
-
-    <p style="text-align:center;margin-top:22px;">
-      <a class="btn" href="index.html">← Retour à l'accueil</a>
-    </p>
-  </div>
-
-  <footer class="footer"><p>© 2025 SmartToolsFree</p></footer>
-
-<script>
-function pattern(theme,tone){
-  const hooks = [
-    `3 erreurs que tout le monde fait en ${theme} (et comment les éviter)`,
-    `Avant / Après : j’ai testé une astuce ${theme} pendant 7 jours`,
-    `Top 5 des indispensables ${theme} à moins de 20€`,
-    `Tu fais du ${theme} ? Voici le secret que personne ne dit`,
-    `Je note vos setups ${theme} (partage en commentaires)`,
-    `Défi 30 jours ${theme} : jour 1`,
-    `Je réagis à vos TikToks ${theme}`,
-    `Le guide ultra-rapide pour débuter en ${theme}`
-  ];
-  const style = tone==="humour" ? "😅"
-              : tone==="motivation" ? "🔥"
-              : tone==="storytime" ? "🎙️"
-              : "📚";
-  return hooks.map(h => `${style} ${h}`);
-}
-function genIdeas(){
-  const theme = (document.getElementById('theme').value||"création").toLowerCase();
-  const tone  = document.getElementById('tone').value;
-  const n     = parseInt(document.getElementById('count').value,10);
-
-  const base = pattern(theme,tone);
-  let ideas = [];
-  while(ideas.length<n){
-    ideas = ideas.concat(base.sort(()=>Math.random()-0.5).slice(0,Math.min(n-base.length, base.length)));
-    if(ideas.length < n) ideas = ideas.concat(base);
-    ideas = [...new Set(ideas)];
-  }
-  ideas = ideas.slice(0,n);
-
-  const list = document.getElementById('ideasList');
-  list.innerHTML = ideas.map(i=>`<li style="margin:6px 0;">${i}</li>`).join('');
-  document.getElementById('ideasBox').style.display='block';
-}
-function copyIdeas(){
-  const t = [...document.querySelectorAll('#ideasList li')].map(li=>li.innerText).join('\n');
-  if(!t) return;
-  navigator.clipboard.writeText(t); alert("Idées copiées ✅");
-}
-</script>
+  <script>
+    const ideas = [
+      "Montre ta transformation avant/après 🎨",
+      "Fais une vidéo avec ton son préféré 🎵",
+      "Un challenge avec tes amis 👯",
+      "Montre ton setup ou ton quotidien 💻",
+      "Un ‘5 faits sur moi’ 😄"
+    ];
+    document.getElementById("idea-btn").addEventListener("click", () => {
+      document.getElementById("idea-output").innerText = ideas[Math.floor(Math.random() * ideas.length)];
+    });
+  </script>
 </body>
 </html>
