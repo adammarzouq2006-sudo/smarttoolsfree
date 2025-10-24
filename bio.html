@@ -3,71 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de bio Instagram - SmartToolsFree</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <title>Générateur de bio Instagram</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-logo">SmartToolsFree</div>
-    <div class="nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="#tools">Outils</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+  <header class="navbar">
+    <h1>Générateur de bio Instagram</h1>
+    <a href="index.html" class="btn">← Retour</a>
+  </header>
 
-  <div class="container">
-    <h1 style="text-align:center;margin-bottom:14px;">📝 Générateur de bio Instagram</h1>
-    <p style="text-align:center;color:#64748b;margin-bottom:26px;">Écris quelques mots sur toi, on te propose des bios stylées.</p>
+  <section class="bio-generator">
+    <h2>Crée ta bio parfaite 💫</h2>
+    <textarea id="bio-input" placeholder="Décris-toi en quelques mots..."></textarea>
+    <button id="generate-btn" class="btn">Générer ma bio</button>
+    <p id="bio-output"></p>
+  </section>
 
-    <div class="card">
-      <div class="row">
-        <textarea id="bioInput" class="input" placeholder="Exemple : Étudiant en BTS | Passion foot & montage vidéo | Lyon"></textarea>
-      </div>
-      <div class="row" style="justify-content:flex-start;margin-top:12px;">
-        <button class="btn" onclick="generateBios()">Générer</button>
-        <button class="btn" style="background:#475569;margin-left:8px;" onclick="copyAll()">Copier tout</button>
-        <a class="btn btn-ko-fi" style="margin-left:auto;" target="_blank" href="https://ko-fi.com/smarttoolsfree">☕ Soutenir</a>
-      </div>
-    </div>
-
-    <div id="bioResults" class="card" style="margin-top:18px;display:none;">
-      <h3 style="margin-bottom:10px;">✨ Bios proposées</h3>
-      <div id="bioList"></div>
-    </div>
-
-    <p style="text-align:center;margin-top:22px;">
-      <a class="btn" href="index.html">← Retour à l'accueil</a>
-    </p>
-  </div>
-
-  <footer class="footer">
-    <p>© 2025 SmartToolsFree</p>
-  </footer>
-
-<script>
-function generateBios(){
-  const v = document.getElementById('bioInput').value.trim();
-  if(!v){ alert("Écris quelques infos sur toi 🙂"); return; }
-
-  const presets = [
-    `✨ ${v} | Ici pour partager, apprendre et kiffer.`,
-    `${v} · 🇫🇷 | On avance, un jour à la fois.`,
-    `🚀 ${v} | Objectif : progresser chaque jour.`,
-    `🌍 ${v} | Authenticité & bonne vibes.`,
-    `💡 ${v} | Fais ce que tu aimes, aime ce que tu fais.`
-  ];
-
-  const list = document.getElementById('bioList');
-  list.innerHTML = presets.map(b => `<div class="badge" style="white-space:pre-wrap;">${b}</div>`).join("");
-  document.getElementById('bioResults').style.display = 'block';
-}
-function copyAll(){
-  const text = [...document.querySelectorAll('#bioList .badge')].map(x=>x.innerText).join('\n');
-  if(!text){ return; }
-  navigator.clipboard.writeText(text);
-  alert("Toutes les bios ont été copiées ✅");
-}
-</script>
+  <script>
+    document.getElementById("generate-btn").addEventListener("click", () => {
+      const bio = document.getElementById("bio-input").value;
+      const bios = [
+        `${bio} 🌟 | Rêve grand, travaille dur 💪`,
+        `${bio} 🚀 | Authenticité avant tout ❤️`,
+        `${bio} ✨ | Partage & créativité au quotidien`,
+        `${bio} 🎯 | Toujours en quête d’inspiration !`
+      ];
+      document.getElementById("bio-output").innerText = bios[Math.floor(Math.random() * bios.length)];
+    });
+  </script>
 </body>
 </html>
