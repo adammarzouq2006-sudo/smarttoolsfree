@@ -3,33 +3,182 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de bio Instagram</title>
+  <title>Générateur de bio Instagram | SmartToolsFree</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f9fafb;
+      color: #222;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    main {
+      margin-top: 3rem;
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    main:hover {
+      transform: scale(1.01);
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    input {
+      width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+
+    input:focus {
+      border-color: #007aff;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #007aff;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #005fcc;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 2rem;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #333;
+      min-height: 50px;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <h1>Générateur de bio Instagram</h1>
-    <a href="index.html" class="btn">← Retour</a>
+  <header>
+    <h1>SmartToolsFree</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+    </nav>
   </header>
 
-  <section class="bio-generator">
-    <h2>Crée ta bio parfaite 💫</h2>
-    <textarea id="bio-input" placeholder="Décris-toi en quelques mots..."></textarea>
-    <button id="generate-btn" class="btn">Générer ma bio</button>
-    <p id="bio-output"></p>
-  </section>
+  <main class="fade-in">
+    <h2>🪄 Générateur de bio Instagram</h2>
+    <p>Entre ton style, et nous créons une bio unique pour ton profil 💡</p>
+    <input type="text" id="themeInput" placeholder="Ex: créatif, fitness, entrepreneur...">
+    <button onclick="generateBio()">Générer ma bio</button>
+
+    <div id="bioResult" class="result"></div>
+  </main>
+
+  <footer>
+    © 2025 SmartToolsFree • Créé avec ❤️ pour les créateurs
+  </footer>
 
   <script>
-    document.getElementById("generate-btn").addEventListener("click", () => {
-      const bio = document.getElementById("bio-input").value;
-      const bios = [
-        `${bio} 🌟 | Rêve grand, travaille dur 💪`,
-        `${bio} 🚀 | Authenticité avant tout ❤️`,
-        `${bio} ✨ | Partage & créativité au quotidien`,
-        `${bio} 🎯 | Toujours en quête d’inspiration !`
-      ];
-      document.getElementById("bio-output").innerText = bios[Math.floor(Math.random() * bios.length)];
-    });
+    const bios = {
+      créatif: [
+        "🎨 Libère ton imagination, chaque jour une nouvelle création ✨",
+        "Créatif dans l’âme — le monde est ma toile 🖌️",
+        "Penser différemment. Créer librement. 🌈"
+      ],
+      fitness: [
+        "💪 Discipline, progrès, et énergie — bienvenue dans ma zone.",
+        "Transpire maintenant, brille plus tard ✨",
+        "Ton corps peut tout accomplir, c’est ton esprit qu’il faut convaincre 🧠"
+      ],
+      entrepreneur: [
+        "🚀 Rêve grand, travaille dur, reste humble.",
+        "Construire aujourd’hui le succès de demain 💼",
+        "Ambitieux, motivé, et prêt à changer le monde 🌍"
+      ],
+      humour: [
+        "😎 50% caféine, 50% blagues nulles.",
+        "Professionnel du rire depuis ma naissance 😂",
+        "Ma bio est plus drôle que mes blagues (ou pas) 😜"
+      ],
+      voyage: [
+        "✈️ Passeport prêt, rêve infini 🌍",
+        "Collectionneur de souvenirs et de couchers de soleil 🌅",
+        "Toujours en route vers une nouvelle aventure 🌏"
+      ]
+    };
+
+    function generateBio() {
+      const theme = document.getElementById("themeInput").value.toLowerCase().trim();
+      const bioContainer = document.getElementById("bioResult");
+      bioContainer.innerHTML = "";
+
+      if (!theme || !bios[theme]) {
+        bioContainer.textContent = "Aucun résultat 😅 — essaie avec un thème comme 'créatif', 'fitness', 'voyage'...";
+        return;
+      }
+
+      const options = bios[theme];
+      const bio = options[Math.floor(Math.random() * options.length)];
+      bioContainer.textContent = bio;
+    }
   </script>
 </body>
 </html>
