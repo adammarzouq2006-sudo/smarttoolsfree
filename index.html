@@ -1,94 +1,191 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartToolsFree - Outils gratuits pour créateurs</title>
-  <meta name="description" content="Des outils gratuits, modernes et simples pour les créateurs. Génère ta bio, trouve des idées TikTok, crée des mots de passe, et bien plus !">
-  <link rel="icon" href="logo.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartToolsFree - Outils gratuits en ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e4ebf5);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header img {
+      height: 50px;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+
+    main {
+      margin-top: 2rem;
+      width: 90%;
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tool-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .tool-card img {
+      width: 70px;
+      margin-bottom: 1rem;
+    }
+
+    .tool-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .tool-card p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #007aff;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #005fcc;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .support {
+      margin-top: 3rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .support a {
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
-
 <body>
-
-  <!-- HEADER -->
-  <header class="navbar">
-    <div class="logo-container">
-      <img src="logo.jpg" alt="SmartToolsFree Logo">
-      <h1>SmartToolsFree</h1>
-    </div>
-    <nav>
-      <a href="#outils">Outils</a>
-      <a href="#contact">Contact</a>
-      <a href="https://ko-fi.com/smarttoolsfree" target="_blank" class="btn-don">☕ Soutenir</a>
-    </nav>
+  <header>
+    <h1>🚀 SmartToolsFree</h1>
+    <img src="logo.jpg" alt="Logo SmartToolsFree">
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Des outils gratuits pour les créateurs ✨</h2>
-      <p>Optimise ton contenu, gagne du temps et développe ta créativité avec SmartToolsFree.</p>
-      <a href="#outils" class="cta">Découvrir les outils</a>
-    </div>
-    <div class="hero-img">
-      <img src="https://cdn.dribbble.com/userupload/4735317/file/original-3b13cfe8b4e34a2cb1d5e554418ed4b1.png?resize=800x600" alt="Outils en ligne">
-    </div>
-  </section>
+  <main>
+    <h2>Outils gratuits et simples</h2>
+    <p class="subtitle">Des outils modernes pour les créateurs, étudiants et entrepreneurs ✨</p>
 
-  <!-- OUTILS -->
-  <section id="outils" class="outils">
-    <h3>Nos outils créatifs 💡</h3>
-    <div class="cards">
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="">
-        <h4>Bio Instagram</h4>
-        <p>Crée une bio accrocheuse pour ton profil Instagram.</p>
-        <a href="bio.html" class="btn">Essayer</a>
+    <section class="tools">
+      <div class="tool-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670274.png" alt="Bio">
+        <h3>🪄 Générateur de bio Instagram</h3>
+        <p>Crée une bio unique selon ton style.</p>
+        <a href="bio.html" class="btn">Utiliser</a>
       </div>
 
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="">
-        <h4>Mots de passe</h4>
-        <p>Génère des mots de passe sécurisés en un clic.</p>
-        <a href="mot-de-passe.html" class="btn">Essayer</a>
+      <div class="tool-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Password">
+        <h3>🔐 Générateur de mot de passe</h3>
+        <p>Crée un mot de passe sûr et solide.</p>
+        <a href="motdepasse.html" class="btn">Utiliser</a>
       </div>
 
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="">
-        <h4>Idées TikTok</h4>
-        <p>Découvre des idées originales selon ton style.</p>
-        <a href="tiktok.html" class="btn">Essayer</a>
+      <div class="tool-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046125.png" alt="TikTok">
+        <h3>🎥 Idées TikTok</h3>
+        <p>Inspire-toi avec des idées de vidéos créatives.</p>
+        <a href="ideestiktok.html" class="btn">Utiliser</a>
       </div>
 
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039382.png" alt="">
-        <h4>Hashtags</h4>
-        <p>Trouve les hashtags parfaits pour booster ta visibilité.</p>
-        <a href="hashtags.html" class="btn">Essayer</a>
+      <div class="tool-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670282.png" alt="Hashtags">
+        <h3>📣 Générateur de hashtags</h3>
+        <p>Découvre les meilleurs hashtags selon ton thème.</p>
+        <a href="hashtags.html" class="btn">Utiliser</a>
       </div>
 
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4129/4129343.png" alt="">
-        <h4>Pseudo</h4>
-        <p>Crée un pseudo original pour ton profil ou ta marque.</p>
-        <a href="pseudo.html" class="btn">Essayer</a>
+      <div class="tool-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="Pseudo">
+        <h3>🧠 Générateur de pseudos</h3>
+        <p>Crée un pseudo original et stylé en un clic.</p>
+        <a href="pseudo.html" class="btn">Utiliser</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <h3>📬 Contact</h3>
-    <p>Une idée d’outil ou un bug à signaler ?</p>
-    <a href="mailto:contact@smarttoolsfree.com" class="cta">Écris-nous</a>
-  </section>
+    <section class="support">
+      <h2>💖 Soutenir le projet</h2>
+      <p>Si tu aimes ce site, tu peux offrir un café pour aider à son développement :</p>
+      <a href="https://ko-fi.com/" target="_blank" class="btn">☕ Soutenir sur Ko-fi</a>
+    </section>
+  </main>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2025 SmartToolsFree — Créé avec ❤️ pour les créateurs</p>
+    © 2025 SmartToolsFree — Créé avec ❤️ et JavaScript
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
