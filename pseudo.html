@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de pseudo</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Générateur de Pseudo — SmartToolsFree</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4ebf5);display:flex;flex-direction:column;align-items:center;}
+  header{width:100%;padding:1rem 2rem;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+  main{margin-top:2rem;background:#fff;border-radius:20px;padding:2rem;max-width:700px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,.05);text-align:center;}
+  img.illu{width:120px;margin-bottom:1rem;animation:float 3s ease-in-out infinite alternate;}
+  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  button{margin-top:1rem;padding:12px 25px;border:none;border-radius:10px;background:#6200ea;color:#fff;font-weight:600;cursor:pointer;transition:.3s;}
+  button:hover{background:#4a00b5;}
+  .pseudo{margin:.5rem 0;padding:1rem;background:#f5f7fa;border-radius:10px;font-size:1.1rem;}
+  input{width:80%;padding:10px;border-radius:10px;border:1px solid #ccc;font-size:1rem;}
+</style>
 </head>
 <body>
-  <header class="navbar">
-    <h1>🧠 Générateur de pseudo</h1>
-    <a href="index.html" class="btn">← Retour</a>
-  </header>
+  <header><strong>SmartToolsFree</strong></header>
+  <main>
+    <img class="illu" src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="Pseudo">
+    <h1>🧠 Générateur de Pseudos</h1>
+    <p>Entre un mot ou ton prénom, et obtiens des pseudos originaux ⚡</p>
+    <input id="base" placeholder="Ex : Adam, gamer, beauty..." />
+    <button onclick="generate()">Générer</button>
+    <div id="result"></div>
+  </main>
 
-  <section class="tool-section">
-    <h2>Crée ton pseudo unique</h2>
-    <button id="generate" class="btn">Générer</button>
-    <p id="output"></p>
-  </section>
-
-  <script>
-    const mots = ["Pro", "Star", "X", "Wave", "Nova", "Flow", "Elite", "Max"];
-    document.getElementById("generate").addEventListener("click", () => {
-      const pseudo = mots[Math.floor(Math.random()*mots.length)] + Math.floor(Math.random()*999);
-      document.getElementById("output").innerText = pseudo;
-    });
-  </script>
+<script>
+function generate(){
+  const base=document.getElementById("base").value.trim();
+  const result=document.getElementById("result");
+  if(!base){result.innerHTML="<p>Entre un mot d'abord 👇</p>";return;}
+  const endings=["_x","_yt","_pro","_officiel","_69","_vibe","_real","_thebest","_01","_plus"];
+  let output="";
+  for(let i=0;i<5;i++){
+    const end=endings[Math.floor(Math.random()*endings.length)];
+    const pseudo=base.charAt(0).toUpperCase()+base.slice(1)+end;
+    output+=`<div class="pseudo">${pseudo}</div>`;
+  }
+  result.innerHTML=output;
+}
+</script>
 </body>
 </html>
