@@ -1,30 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de hashtags</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="navbar">
-    <h1>🏷️ Générateur de hashtags</h1>
-    <a href="index.html" class="btn">← Retour</a>
-  </header>
-
-  <section class="tool-section">
-    <h2>Entre un mot-clé :</h2>
-    <input id="keyword" placeholder="ex: mode, voyage...">
-    <button id="generate" class="btn">Générer</button>
-    <p id="hashtags"></p>
-  </section>
-
-  <script>
-    document.getElementById("generate").addEventListener("click", () => {
-      const kw = document.getElementById("keyword").value;
-      const tags = [`#${kw}`, `#${kw}life`, `#${kw}vibes`, `#love${kw}`, `#best${kw}`];
-      document.getElementById("hashtags").innerText = tags.join(" ");
-    });
-  </script>
-</body>
-</html>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Générateur de Hashtags — SmartToolsFree</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4ebf5);display:flex;flex-direction:column;align-items:center;}
+  header{width:100%;padding:1rem 2rem;background:#fff;box-shadow:0 2px 6px rgba(0,0
