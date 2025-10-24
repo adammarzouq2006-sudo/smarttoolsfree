@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Idées TikTok</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Idées TikTok — SmartToolsFree</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4ebf5);display:flex;flex-direction:column;align-items:center;}
+  header{width:100%;padding:1rem 2rem;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+  main{margin-top:2rem;background:#fff;border-radius:20px;padding:2rem;max-width:700px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,.05);text-align:center;}
+  img.illu{width:120px;margin-bottom:1rem;animation:float 3s ease-in-out infinite alternate;}
+  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  button{margin-top:1rem;padding:12px 25px;border:none;border-radius:10px;background:#ff0050;color:#fff;font-weight:600;cursor:pointer;transition:.3s;}
+  button:hover{background:#d10044;}
+  .idea{background:#f5f7fa;margin:.5rem 0;padding:1rem;border-radius:10px;}
+</style>
 </head>
 <body>
-  <header class="navbar">
-    <h1>🎥 Idées TikTok</h1>
-    <a href="index.html" class="btn">← Retour</a>
-  </header>
+  <header><strong>SmartToolsFree</strong></header>
+  <main>
+    <img class="illu" src="https://cdn-icons-png.flaticon.com/512/3046/3046125.png" alt="TikTok">
+    <h1>🎥 Idées de contenu TikTok</h1>
+    <p>Besoin d’inspiration ? Clique et découvre de nouvelles idées 💡</p>
+    <button onclick="idea()">Générer une idée</button>
+    <div id="result"></div>
+  </main>
 
-  <section class="tool-section">
-    <h2>Trouve ton inspiration ✨</h2>
-    <button id="idea-btn" class="btn">Donne-moi une idée</button>
-    <p id="idea-output"></p>
-  </section>
-
-  <script>
-    const ideas = [
-      "Montre ta transformation avant/après 🎨",
-      "Fais une vidéo avec ton son préféré 🎵",
-      "Un challenge avec tes amis 👯",
-      "Montre ton setup ou ton quotidien 💻",
-      "Un ‘5 faits sur moi’ 😄"
-    ];
-    document.getElementById("idea-btn").addEventListener("click", () => {
-      document.getElementById("idea-output").innerText = ideas[Math.floor(Math.random() * ideas.length)];
-    });
-  </script>
+<script>
+const ideas=[
+  "🎵 Crée une transition avant/après avec ta chanson préférée.",
+  "😂 Fais une réaction drôle à une vidéo tendance.",
+  "📚 Partage une astuce que peu de gens connaissent.",
+  "🎨 Montre les coulisses de ta création.",
+  "💬 Raconte une anecdote en format story time.",
+  "👗 Partage ton look du jour avec une musique virale.",
+  "💪 Lance un défi à ta communauté."
+];
+function idea(){
+  const r=document.getElementById("result");
+  const pick=ideas[Math.floor(Math.random()*ideas.length)];
+  r.innerHTML=`<div class='idea'>${pick}</div>`;
+}
+</script>
 </body>
 </html>
