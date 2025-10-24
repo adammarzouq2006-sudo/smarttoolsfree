@@ -1,184 +1,111 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de bio Instagram | SmartToolsFree</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      background: #f9fafb;
-      color: #222;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    header {
-      width: 100%;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header h1 {
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
-
-    main {
-      margin-top: 3rem;
-      text-align: center;
-      width: 90%;
-      max-width: 600px;
-      background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    main:hover {
-      transform: scale(1.01);
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
-
-    input {
-      width: 80%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-size: 1rem;
-      transition: border 0.3s;
-    }
-
-    input:focus {
-      border-color: #007aff;
-    }
-
-    button {
-      margin-top: 1rem;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #007aff;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    button:hover {
-      background: #005fcc;
-      transform: translateY(-2px);
-    }
-
-    .result {
-      margin-top: 2rem;
-      background: #f1f5f9;
-      padding: 1rem;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #333;
-      min-height: 50px;
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .fade-in {
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Générateur de bio Instagram — SmartToolsFree</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body{
+    margin:0;padding:0;
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#f5f7fa,#e4ebf5);
+    display:flex;flex-direction:column;align-items:center;
+  }
+  header{width:100%;padding:1rem 2rem;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+  main{
+    margin-top:2rem;background:#fff;border-radius:20px;
+    padding:2rem;max-width:700px;width:90%;
+    box-shadow:0 8px 30px rgba(0,0,0,.05);
+    text-align:center;
+  }
+  h1{margin-bottom:.5rem;}
+  img.illu{width:120px;margin-bottom:1rem;animation:float 3s ease-in-out infinite alternate;}
+  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  input{width:80%;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:1rem;}
+  button{
+    margin-top:1rem;padding:12px 25px;border:none;
+    border-radius:10px;background:#007aff;color:#fff;
+    font-weight:600;cursor:pointer;transition:.3s;
+  }
+  button:hover{background:#005fcc;}
+  .bios{margin-top:1.5rem;text-align:left;}
+  .bio{
+    background:#f5f7fa;margin:.5rem 0;padding:1rem;
+    border-radius:10px;animation:fadeIn .4s ease;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>SmartToolsFree</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-    </nav>
-  </header>
-
-  <main class="fade-in">
-    <h2>🪄 Générateur de bio Instagram</h2>
-    <p>Entre ton style, et nous créons une bio unique pour ton profil 💡</p>
-    <input type="text" id="themeInput" placeholder="Ex: créatif, fitness, entrepreneur...">
-    <button onclick="generateBio()">Générer ma bio</button>
-
-    <div id="bioResult" class="result"></div>
+  <header><strong>SmartToolsFree</strong></header>
+  <main>
+    <img class="illu" src="https://cdn-icons-png.flaticon.com/512/3670/3670274.png" alt="Instagram logo">
+    <h1>🪄 Générateur de bios Instagram</h1>
+    <p>Saisis un thème (motivation, mode, voyage, sport, etc.)</p>
+    <input id="theme" placeholder="Ex : motivation, sport, humour..." />
+    <button onclick="gen()">Générer</button>
+    <div id="result" class="bios"></div>
   </main>
 
-  <footer>
-    © 2025 SmartToolsFree • Créé avec ❤️ pour les créateurs
-  </footer>
+<script>
+const data={
+  motivation:[
+    "🌟 Crois en toi, travaille dur, brille plus fort !",
+    "🚀 La persévérance transforme les rêves en réalité.",
+    "✨ La motivation est mon carburant, le succès ma destination.",
+    "🔥 Chaque jour une chance de devenir meilleur."
+  ],
+  mode:[
+    "👗 Style avant tout. Confiance et élégance.",
+    "💅 La mode se démode, le style jamais.",
+    "👜 Passionnée de looks et de vibes positives."
+  ],
+  voyage:[
+    "✈️ L'aventure m'appelle, je réponds toujours présent.",
+    "🌍 À la recherche de couchers de soleil inoubliables.",
+    "📸 Voyager c’est vivre deux fois."
+  ],
+  sport:[
+    "💪 Discipline. Force. Passion.",
+    "🏋️ Reste fort ; chaque goutte de sueur compte.",
+    "⚡ L’esprit de compétition dans chaque fibre."
+  ],
+  humour:[
+    "😂 Trop sérieux pour être drôle ? Jamais !",
+    "😜 J’apporte la bonne humeur, même le lundi.",
+    "🤣 Souris, c’est gratuit."
+  ],
+  business:[
+    "💼 Rêver, planifier, exécuter, répéter.",
+    "🚀 Entrepreneuriat & ambition sans limite.",
+    "💡 Transformer les idées en succès."
+  ],
+  gaming:[
+    "🎮 Gamer dans l’âme, stratège dans la tête.",
+    "🔥 Level up every day.",
+    "🕹️ Toujours prêt pour une nouvelle partie."
+  ]
+};
 
-  <script>
-    const bios = {
-      créatif: [
-        "🎨 Libère ton imagination, chaque jour une nouvelle création ✨",
-        "Créatif dans l’âme — le monde est ma toile 🖌️",
-        "Penser différemment. Créer librement. 🌈"
-      ],
-      fitness: [
-        "💪 Discipline, progrès, et énergie — bienvenue dans ma zone.",
-        "Transpire maintenant, brille plus tard ✨",
-        "Ton corps peut tout accomplir, c’est ton esprit qu’il faut convaincre 🧠"
-      ],
-      entrepreneur: [
-        "🚀 Rêve grand, travaille dur, reste humble.",
-        "Construire aujourd’hui le succès de demain 💼",
-        "Ambitieux, motivé, et prêt à changer le monde 🌍"
-      ],
-      humour: [
-        "😎 50% caféine, 50% blagues nulles.",
-        "Professionnel du rire depuis ma naissance 😂",
-        "Ma bio est plus drôle que mes blagues (ou pas) 😜"
-      ],
-      voyage: [
-        "✈️ Passeport prêt, rêve infini 🌍",
-        "Collectionneur de souvenirs et de couchers de soleil 🌅",
-        "Toujours en route vers une nouvelle aventure 🌏"
-      ]
-    };
-
-    function generateBio() {
-      const theme = document.getElementById("themeInput").value.toLowerCase().trim();
-      const bioContainer = document.getElementById("bioResult");
-      bioContainer.innerHTML = "";
-
-      if (!theme || !bios[theme]) {
-        bioContainer.textContent = "Aucun résultat 😅 — essaie avec un thème comme 'créatif', 'fitness', 'voyage'...";
-        return;
-      }
-
-      const options = bios[theme];
-      const bio = options[Math.floor(Math.random() * options.length)];
-      bioContainer.textContent = bio;
-    }
-  </script>
+function gen(){
+  const theme=document.getElementById("theme").value.trim().toLowerCase();
+  const result=document.getElementById("result");
+  result.innerHTML="";
+  const entries=data[theme];
+  if(!entries){
+    result.innerHTML="<div class='bio'>❌ Thème non reconnu. Essaie : motivation, mode, sport, humour...</div>";
+    return;
+  }
+  // Afficher 3 bios aléatoires
+  const shuffled=[...entries].sort(()=>0.5-Math.random()).slice(0,3);
+  shuffled.forEach(b=>{
+    const div=document.createElement("div");
+    div.className="bio";
+    div.textContent=b;
+    result.appendChild(div);
+  });
+}
+</script>
 </body>
 </html>
