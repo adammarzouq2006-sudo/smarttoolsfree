@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Générateur de mot de passe</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Générateur de mot de passe — SmartToolsFree</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e4ebf5);display:flex;flex-direction:column;align-items:center;}
+  header{width:100%;padding:1rem 2rem;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+  main{margin-top:2rem;background:#fff;border-radius:20px;padding:2rem;max-width:700px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,.05);text-align:center;}
+  img.illu{width:120px;margin-bottom:1rem;animation:float 3s ease-in-out infinite alternate;}
+  @keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  button{margin-top:1rem;padding:12px 25px;border:none;border-radius:10px;background:#007aff;color:#fff;font-weight:600;cursor:pointer;transition:.3s;}
+  button:hover{background:#005fcc;}
+  .result{margin-top:1rem;font-size:1.3rem;background:#f5f7fa;padding:1rem;border-radius:10px;user-select:all;}
+  label{display:block;margin-top:1rem;}
+  input[type=range]{width:60%;}
+</style>
 </head>
 <body>
-  <header class="navbar">
-    <h1>🔒 Générateur de mot de passe</h1>
-    <a href="index.html" class="btn">← Retour</a>
-  </header>
+  <header><strong>SmartToolsFree</strong></header>
+  <main>
+    <img class="illu" src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Mot de passe">
+    <h1>🔐 Générateur de mots de passe</h1>
+    <p>Crée des mots de passe sûrs et personnalisés</p>
+    <label>Longueur : <span id="lengthVal">12</span></label>
+    <input id="length" type="range" min="6" max="32" value="12" oninput="document.getElementById('lengthVal').textContent=this.value">
+    <div>
+      <label><input type="checkbox" id="upper" checked> Lettres majuscules</label>
+      <label><input type="checkbox" id="lower" checked> Lettres minuscules</label>
+      <label><input type="checkbox" id="numbers" checked> Chiffres</label>
+      <label><input type="checkbox" id="symbols"> Symboles</label>
+    </div>
+    <button onclick="generate()">Générer</button>
+    <div id="result" class="result"></div>
+  </main>
 
-  <section class="tool-section">
-    <h2>Crée un mot de passe sécurisé</h2>
-    <button id="generate" class="btn">Générer</button>
-    <input id="password" readonly placeholder="Ton mot de passe apparaîtra ici">
-  </section>
-
-  <script>
-    document.getElementById("generate").addEventListener("click", () => {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
-      let pass = "";
-      for (let i = 0; i < 12; i++) {
-        pass += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      document.getElementById("password").value = pass;
-    });
-  </script>
+<script>
+function generate(){
+  const upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lower="abcdefghijklmnopqrstuvwxyz";
+  const numbers="0123456789";
+  const symbols="!@#$%^&*()_+[]{}<>?";
+  let chars="";
+  if(document.getElementById("upper").checked) chars+=upper;
+  if(document.getElementById("lower").checked) chars+=lower;
+  if(document.getElementById("numbers").checked) chars+=numbers;
+  if(document.getElementById("symbols").checked) chars+=symbols;
+  const len=parseInt(document.getElementById("length").value);
+  let pwd="";
+  for(let i=0;i<len;i++){pwd+=chars.charAt(Math.floor(Math.random()*chars.length));}
+  document.getElementById("result").textContent=pwd;
+}
+</script>
 </body>
 </html>
