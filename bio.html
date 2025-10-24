@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Générateur de bio Instagram - SmartToolsFree</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
+
 <body>
-  <header>
-    <h1>📝 Générateur de bio Instagram</h1>
-    <p>Décris-toi en quelques mots, on te crée ta bio parfaite !</p>
-  </header>
-
-  <main class="generator">
-    <textarea id="userInput" rows="4" placeholder="Écris quelques mots sur toi..."></textarea>
-    <button id="generateBtn" class="btn">Générer mes bios</button>
-
-    <div id="result" class="result"></div>
-
-    <div class="back">
-      <a href="index.html" class="btn">⬅ Retour à l’accueil</a>
+  <nav class="navbar">
+    <div class="nav-logo">SmartToolsFree</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="#tools">Outils</a>
+      <a href="#contact">Contact</a>
     </div>
+  </nav>
+
+  <main class="hero">
+    <h1>📝 Générateur de bio Instagram</h1>
+    <p>Écris ton bio en quelques mots, et laisse l’outil créer une version stylée automatiquement !</p>
+
+    <div style="margin-top:30px;">
+      <textarea id="userInput" rows="4" placeholder="Décris-toi en quelques mots..." style="width:100%;max-width:500px;padding:10px;border-radius:8px;border:1px solid #ccc;"></textarea>
+      <br>
+      <button onclick="generateBio()" class="btn">Générer ma bio</button>
+    </div>
+
+    <div id="result" style="margin-top:30px;display:none;">
+      <h3>✨ Ta bio générée :</h3>
+      <p id="bioOutput" style="background:#f9f9f9;border:1px solid #eee;padding:15px;border-radius:8px;"></p>
+    </div>
+
+    <a href="index.html" class="btn btn-ko-fi" style="margin-top:40px;">← Retour à l'accueil</a>
   </main>
 
-  <footer>
-    <p>© 2025 SmartToolsFree</p>
+  <footer class="footer">
+    <p>© 2025 SmartToolsFree — Fait avec ❤️ et créativité.</p>
   </footer>
+
+  <script>
+    function generateBio() {
+      const input = document.getElementById("userInput").value.trim();
+      const output = document.getElementById("bioOutput");
+      const resultBox = document.getElementById("result");
+
+      if (input.length === 0) {
+        alert("Écris quelque chose avant de générer ta bio !");
+        return;
+      }
+
+      const bios = [
+        `✨ ${input} | Partage ma passion chaque jour 💫`,
+        `${input} 🚀 | En route vers mes rêves`,
+        `🌍 ${input} | Juste moi, simplement`,
+        `💡 ${input} | Toujours en quête de nouvelles idées`,
+        `${input} 🌸 | Reste toi-même, c’est ça le secret !`
+      ];
+
+      const random = bios[Math.floor(Math.random() * bios.length)];
+      output.innerText = random;
+      resultBox.style.display = "block";
+    }
+  </script>
 </body>
 </html>
